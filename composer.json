@@ -1,5 +1,15 @@
 {
-    "require": {
-        "phpmailer/phpmailer": "^6.8"
-    }
+    "name": "arnaudmaxime/garage-parrot",
+    "autoload": {
+        "psr-4": {
+            "Arnaudmaxime\\GarageParrot\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "maxime191994",
+            "email": "marnaud194@gmail.com"
+        }
+    ],
+    "require": {}
 }
