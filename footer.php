@@ -21,7 +21,7 @@
                 <div class="text-center"> <!-- Ajout de cette div pour centrer le contenu des horaires -->
                     <ul class="small text-center">
                         <?php
-                        require_once __DIR__ . "../controller/HorairesOuvertureController.php"; // Remplacez par le chemin réel
+                        require_once __DIR__ . "controller/HorairesOuvertureController.php"; // Remplacez par le chemin réel
                         $horairesController = new HorairesOuvertureController();
 
                         // Appel de la méthode pour récupérer les horaires d'ouverture

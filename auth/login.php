@@ -105,16 +105,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Accueil</a>
+                        <a class="nav-link" href="../index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="services.php">Nos Services</a>
+                        <a class="nav-link" href="../services.php">Nos Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="vehicles.php">Véhicules d'Occasion</a>
+                        <a class="nav-link" href="../vehicles.php">Véhicules d'Occasion</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.php">Contact</a>
+                        <a class="nav-link" href="../contact.php">Contact</a>
                     </li>
                     <!-- Bouton de connexion pour tous les utilisateurs -->
                     <li class="nav-item">
