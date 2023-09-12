@@ -1,0 +1,95 @@
+-- Table pour les administrateurs
+CREATE TABLE administrateurs (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    mot_de_passe VARCHAR(255) NOT NULL
+);
+
+-- Table pour les employés
+CREATE TABLE employes (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    mot_de_passe VARCHAR(255) NOT NULL
+);
+
+-- Table pour les services
+CREATE TABLE services (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    description TEXT
+);
+
+-- Table pour les horaires d'ouverture
+CREATE TABLE horaires_ouverture (
+    id SERIAL PRIMARY KEY,
+    jour_semaine VARCHAR(20) NOT NULL,
+    heure_ouverture TIME NOT NULL,
+    heure_fermeture TIME NOT NULL
+);
+
+-- Table pour les véhicules d'occasion
+CREATE TABLE vehicules_occasion (
+    id SERIAL PRIMARY KEY,
+    marques VARCHAR(255) NOT NULL,
+    nom_modele VARCHAR(255) NOT NULL,
+    annee_mise_en_circulation INT NOT NULL,
+    prix DECIMAL(10, 2) NOT NULL,
+    kilometrage INT NOT NULL,
+    description TEXT,
+    image_principale VARCHAR(255),
+    galerie_images JSON, -- Stockez les noms de fichiers des images dans un tableau JSON
+    caractéristiques JSON, -- Stockez les caractéristiques dans un format JSON
+    options TEXT -- Liste des options séparées par des virgules
+);
+
+-- Table pour les témoignages des clients
+CREATE TABLE temoignages (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    commentaire TEXT NOT NULL,
+    note INT NOT NULL CHECK (note >= 1 AND note <= 5),
+    date_ajout TIMESTAMP DEFAULT NOW(),
+    approuve BOOLEAN DEFAULT FALSE -- Indique si le témoignage a été approuvé par l'administrateur
+);
+
+
+INSERT INTO services (nom, description)
+VALUES
+    ('Réparation de Carrosserie', 'Nous offrons des services de réparation de carrosserie professionnels pour redonner à votre voiture son aspect d''origine.'),
+    ('Entretien Mécanique', 'Confiez-nous l''entretien mécanique de votre véhicule. Nous sommes spécialisés dans la réparation de moteurs, freins, et plus encore.'),
+    ('Vente de Véhicules d''Occasion', 'Découvrez notre sélection de véhicules d''occasion de qualité. Trouvez la voiture qui correspond à vos besoins.');
+
+
+INSERT INTO horaires_ouverture (jour_semaine, heure_ouverture, heure_fermeture)
+VALUES
+    ('Lundi', '08:30:00', '18:30:00'),
+    ('Mardi', '08:30:00', '18:30:00'),
+    ('Mercredi', '08:30:00', '18:30:00'),
+    ('Jeudi', '08:30:00', '18:30:00'),
+    ('Vendredi', '08:30:00', '18:30:00'),
+    ('Samedi', '08:30:00', '12:00:00');
+
+-- Modifiez la colonne "prix" pour changer son type en INT
+ALTER TABLE vehicules_occasion
+ALTER COLUMN prix TYPE INT
+USING prix::integer;
+
+
+-- Création d'un admin avec un mot de passe hasher
+
+<?php
+$motDePasse = "monmotdepasse"; // Mot de passe en clair
+
+// Utilisez password_hash pour générer le hachage du mot de passe
+$motDePasseHache = password_hash($motDePasse, PASSWORD_DEFAULT);
+
+echo "Mot de passe haché : " . $motDePasseHache;
+?>
+
+INSERT INTO administrateurs (nom, prenom, email, mot_de_passe)
+VALUES ('Parrot', 'Vincent', 'VPGarage@outlook.fr', 'la valeur du echo $motDePasseHache');
+

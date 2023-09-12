@@ -1,0 +1,133 @@
+/* Arrière-plan global */
+body {
+  background-color: #F1C40F; /* jaune */
+  color: #404040; /* Gris foncé */
+}
+
+body, h1, h2, h3, h4, h5, h6, p, a, label, button {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+/* Boutons */
+
+.btn-primary:hover {
+  background-color: #E74C3C; /* Orange */
+  border-color: #E74C3C; /* Orange */
+  color: #fff; /* Blanc */
+}
+
+.btn-primary {
+  background-color: #404040; /* gris foncé */
+  border-color: #E74C3C; /* Orange */
+  color: #fff; /* Blanc */
+}
+
+.btn-info {
+  background-color: #45B39D; /* bleu vert */
+  color: #fff; /* Blanc */
+}
+
+/* Liens */
+a {
+  color: #45B39D; /* Bleu vert */
+}
+
+a:hover {
+  color: #E74C3C; /* Orange */
+}
+
+/* Barre de navigation */
+.navbar {
+  background-color: #404040; /* Gris foncé */
+  color: #fff; /* Blanc */
+}
+
+.custom-logo img {
+  max-height: 130px; /* Ajustez la taille en pixels selon vos besoins */
+}
+
+.navbar-nav .nav-link {
+  color: #404040; /* Couleur du texte */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #E74C3C; /* Couleur du texte au survol */
+}
+
+/* Pied de page */
+footer {
+  background-color: #404040; /* Gris foncé */
+  color: #fff; /* Blanc */
+  bottom: 0;
+  padding: 10px 0; /* Espacement intérieur du footer */
+  margin-top: 60px;
+}
+
+.btn.btn-primary.btn-lg {
+  padding: 20px 40px; /* Vous pouvez ajuster la taille du bouton en modifiant les valeurs de padding */
+  font-size: 24px; /* Vous pouvez ajuster la taille de la police du bouton en modifiant la valeur de font-size */
+  margin: 20px;
+}
+
+.margedehero {
+  margin: 80px; /* Vous pouvez ajuster la taille de la marge en fonction de vos préférences */
+}
+
+.monlogoengrand{
+  margin: 60px
+}
+
+ul {
+  list-style: none;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #45B39D;
+  border-color: #45B39D;
+}
+
+.pagination .page-link {
+  color: #45B39D;
+}
+
+/* Supprimer le fond blanc */
+.noUi-handle {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+ }
+
+/* Rendre les pointeurs ronds */
+.noUi-handle:before {
+  content: ''; /* Ajoutez un contenu vide pour afficher un cercle */
+  width: 18px; /* Ajustez la taille du cercle selon vos préférences */
+  height: 18px; /* Ajustez la taille du cercle selon vos préférences */
+  border-radius: 50%; /* Rendre le contenu du curseur rond */
+  background-color: #404040; /* Couleur du curseur */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
+
+.noUi-handle::after, .noUi-handle::before {
+  background: #404040;
+}
+
+
+/* Rendre le slider plus fin */
+.noUi-connect {
+  height: 10px; /* Ajustez la hauteur selon vos préférences */
+  border-radius: 2px; /* Rendre les bords du slider plus arrondis */
+  background: #45B39D; /* Couleur de la ligne du slider */
+}
+
+/* Rendre le conteneur du slider aussi fin que le slider */
+.noUi-target {
+  border: none; /* Supprimez la bordure du conteneur */
+  height: 10px;
+  border-radius: 2px;
+}
+
+
+
