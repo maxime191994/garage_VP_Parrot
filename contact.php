@@ -35,14 +35,14 @@
             $mail = new PHPMailer(true);
 
             try {
-                // Paramètres du serveur SMTP
+                // Paramètres du serveur SMTP (utilisation de variables d'environnement)
                 $mail->isSMTP();
-                $mail->Host = getenv('SMTP_HOST'); // Utilisation de la variable d'environnement pour le nom d'hôte SMTP
-                $mail->Port = getenv('SMTP_PORT'); // Utilisation de la variable d'environnement pour le port SMTP
+                $mail->Host = 'smtp.sendgrid.net'; // Hôte SMTP de SendGrid
+                $mail->Port = 587; // Port SMTP de SendGrid (peut être différent)
                 $mail->SMTPAuth = true;
-                $mail->Username = getenv('SMTP_USERNAME'); // Utilisation de la variable d'environnement pour le nom d'utilisateur SMTP
-                $mail->Password = getenv('SMTP_PASSWORD'); // Utilisation de la variable d'environnement pour le mot de passe SMTP
-                $mail->SMTPSecure = 'tls'; // Vous pouvez ajuster cela en fonction de la configuration de votre service SMTP.
+                $mail->Username = 'apikey'; // Utilisez 'apikey' comme nom d'utilisateur
+                $mail->Password = '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'; // Remplacez par votre clé API SendGrid
+                $mail->SMTPSecure = 'tls'; // Utilisez 'tls' pour le chiffrement
 
                 // Destinataire et expéditeur
                 $mail->setFrom($adresse_mail, $nom);
