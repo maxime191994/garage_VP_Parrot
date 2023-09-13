@@ -41,7 +41,7 @@
                 $mail->Port = 587; // Port SMTP de SendGrid (peut être différent)
                 $mail->SMTPAuth = true;
                 $mail->Username = 'apikey'; // Utilisez 'apikey' comme nom d'utilisateur
-                $mail->Password = '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'; // Remplacez par votre clé API SendGrid
+                $mail->Password = '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'; // Remplacez par votre clé API SendGrid
                 $mail->SMTPSecure = 'tls'; // Utilisez 'tls' pour le chiffrement
 
                 // Destinataire et expéditeur
