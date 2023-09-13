@@ -12,4 +12,8 @@ try {
 } catch (PDOException $e) {
     die("Erreur de connexion à la base de données : " . $e->getMessage());
 }
+
+define('SENDGRID_API_KEY', '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');
+
 ?>
+

@@ -13,15 +13,10 @@
     <?php include('header.php'); ?>
     <div class="container mt-5">
         <h1>Contactez-nous</h1>
+
         <?php
-        use PHPMailer\PHPMailer\PHPMailer;
-        use PHPMailer\PHPMailer\Exception;
+        require_once 'config.php';
 
-        require_once "config.php";
-
-        require 'vendor/autoload.php'; // Chargez PHPMailer via Composer
-
-        // Vérifiez si le formulaire a été soumis
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Récupérez les données du formulaire
             $nom = $_POST["nom"];
@@ -31,37 +26,27 @@
             $sujet = $_POST["sujet"];
             $message = $_POST["message"];
 
-            // Créez une instance de PHPMailer
-            $mail = new PHPMailer(true);
+            require 'vendor/autoload.php'; // Chargez SendGrid via Composer
+
+            $email = new \SendGrid\Mail\Mail(); 
+            $email->setFrom($adresse_mail, "$nom $prenom"); // Expéditeur
+            $email->setSubject("Message de $nom $prenom - $sujet"); // Sujet de l'e-mail
+            $email->addTo("VPGarage@outlook.fr", "Destinataire"); // Adresse e-mail du destinataire
+            $email->addContent("text/plain", $message); // Contenu texte de l'e-mail
+
+            // Créez un objet SendGrid avec votre clé API
+            $sendgrid = new \SendGrid(SENDGRID_API_KEY);
 
             try {
-                // Paramètres du serveur SMTP (utilisation de variables d'environnement)
-                $mail->isSMTP();
-                $mail->Host = 'smtp.sendgrid.net'; // Hôte SMTP de SendGrid
-                $mail->Port = 587; // Port SMTP de SendGrid (peut être différent)
-                $mail->SMTPAuth = true;
-                $mail->Username = 'apikey'; // Utilisez 'apikey' comme nom d'utilisateur
-                $mail->Password = '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'; // Remplacez par votre clé API SendGrid
-                $mail->SMTPSecure = 'tls'; // Utilisez 'tls' pour le chiffrement
+                // Envoyez l'e-mail
+                $response = $sendgrid->send($email);
 
-                // Destinataire et expéditeur
-                $mail->setFrom($adresse_mail, $nom);
-                $mail->addAddress('VPGarage@outlook.fr'); // Adresse e-mail du destinataire
-
-                // Contenu du message
-                $mail->isHTML(false);
-                $mail->Encoding = 'base64'; // Utiliser l'encodage base64
-                $mail->ContentType = 'text/plain;charset=UTF-8'; // Spécifier l'encodage UTF-8
-                $mail->Subject = mb_encode_mimeheader("Message de $nom $prenom - $sujet", "UTF-8");
-                $mail->Body = "Message : $message\n\nNom : $nom\nPrénom : $prenom\n
-                Adresse e-mail : $adresse_mail\nNuméro de téléphone : $numero_telephone";
-
-                // Envoyer l'e-mail
-                $mail->send();
+                // Affichez la réponse
                 echo "<p class='alert alert-success'>Votre message a été envoyé avec succès. Nous vous répondrons bientôt. 
                 <a href='index.php' class='btn btn-secondary'>Retour à l'accueil</a></p>";
             } catch (Exception $e) {
-                echo "<p class='alert alert-danger'>Une erreur s'est produite lors de l'envoi de votre message : {$mail->ErrorInfo}
+                // En cas d'erreur, affichez le message d'erreur
+                echo "<p class='alert alert-danger'>Une erreur s'est produite lors de l'envoi de votre message : {$e->getMessage()}
                 <a href='index.php' class='btn btn-secondary'>Retour à l'accueil</a></p>";
             }
         }

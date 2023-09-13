@@ -11,5 +11,8 @@
             "email": "marnaud194@gmail.com"
         }
     ],
-    "require": {}
+    
+    "require": {
+        "sendgrid/sendgrid": "^8.0"
+    }
 }
