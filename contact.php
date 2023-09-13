@@ -66,7 +66,7 @@
             }
         }
         ?>
-        
+
         <form method="post" action="contact.php">
             <div class="form-group">
                 <label for="nom">Nom :</label>
