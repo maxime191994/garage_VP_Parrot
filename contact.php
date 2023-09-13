@@ -37,12 +37,12 @@
             try {
                 // Paramètres du serveur SMTP
                 $mail->isSMTP();
-                $mail->Host = 'smtp.elasticemail.com'; // Serveur SMTP de Gmail
+                $mail->Host = getenv('SMTP_HOST'); // Utilisation de la variable d'environnement pour le nom d'hôte SMTP
+                $mail->Port = getenv('SMTP_PORT'); // Utilisation de la variable d'environnement pour le port SMTP
                 $mail->SMTPAuth = true;
-                $mail->Username = 'VPGarage@outlook.fr'; // Votre adresse e-mail Gmail
-                $mail->Password = '1244C17219E30779A50C18D0A89961CF2788'; // Votre mot de passe Gmail
-                $mail->SMTPSecure = 'tls';
-                $mail->Port = 2525;
+                $mail->Username = getenv('SMTP_USERNAME'); // Utilisation de la variable d'environnement pour le nom d'utilisateur SMTP
+                $mail->Password = getenv('SMTP_PASSWORD'); // Utilisation de la variable d'environnement pour le mot de passe SMTP
+                $mail->SMTPSecure = 'tls'; // Vous pouvez ajuster cela en fonction de la configuration de votre service SMTP.
 
                 // Destinataire et expéditeur
                 $mail->setFrom($adresse_mail, $nom);
@@ -56,7 +56,6 @@
                 $mail->Body = "Message : $message\n\nNom : $nom\nPrénom : $prenom\n
                 Adresse e-mail : $adresse_mail\nNuméro de téléphone : $numero_telephone";
 
-
                 // Envoyer l'e-mail
                 $mail->send();
                 echo "<p class='alert alert-success'>Votre message a été envoyé avec succès. Nous vous répondrons bientôt. 
@@ -67,6 +66,7 @@
             }
         }
         ?>
+        
         <form method="post" action="contact.php">
             <div class="form-group">
                 <label for="nom">Nom :</label>
