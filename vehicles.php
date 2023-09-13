@@ -58,7 +58,7 @@
     </div>
 
     <!-- Scripts JavaScript pour les filtres et l'affichage des véhicules -->
-    <script src="/Garage_Parrot/js/scripts.js"></script>
+    <script src="/js/scripts.js"></script>
 
     <script>
         // Fonction pour mettre à jour la liste des véhicules en fonction des filtres
