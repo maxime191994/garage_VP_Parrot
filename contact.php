@@ -15,42 +15,42 @@
         <h1>Contactez-nous</h1>
 
         <?php
-        require_once 'config.php';
+require_once 'config.php';
 
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            // Récupérez les données du formulaire
-            $nom = $_POST["nom"];
-            $prenom = $_POST["prenom"];
-            $adresse_mail = $_POST["adresse_mail"];
-            $numero_telephone = $_POST["numero_telephone"];
-            $sujet = $_POST["sujet"];
-            $message = $_POST["message"];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Récupérez les données du formulaire
+    $nom = $_POST["nom"];
+    $prenom = $_POST["prenom"];
+    $adresse_mail = $_POST["adresse_mail"];
+    $numero_telephone = $_POST["numero_telephone"];
+    $sujet = $_POST["sujet"];
+    $message = $_POST["message"];
 
-            require 'vendor/autoload.php'; // Chargez SendGrid via Composer
+    require 'vendor/autoload.php'; // Chargez SendGrid via Composer
 
-            $email = new \SendGrid\Mail\Mail(); 
-            $email->setFrom($adresse_mail, "$nom $prenom"); // Expéditeur
-            $email->setSubject("Message de $nom $prenom - $sujet"); // Sujet de l'e-mail
-            $email->addTo("VPGarage@outlook.fr", "Destinataire"); // Adresse e-mail du destinataire
-            $email->addContent("text/plain", $message); // Contenu texte de l'e-mail
+    try {
+        $email = new \SendGrid\Mail\Mail(); 
+        $email->setFrom($adresse_mail, "$nom $prenom"); // Expéditeur
+        $email->setSubject("Message de $nom $prenom - $sujet"); // Sujet de l'e-mail
+        $email->addTo("VPGarage@outlook.fr", "Destinataire"); // Adresse e-mail du destinataire
+        $email->addContent("text/plain", $message); // Contenu texte de l'e-mail
 
-            // Créez un objet SendGrid avec votre clé API
-            $sendgrid = new \SendGrid(SENDGRID_API_KEY);
+        // Créez un objet SendGrid avec votre clé API
+        $sendgrid = new \SendGrid(SENDGRID_API_KEY);
 
-            try {
-                // Envoyez l'e-mail
-                $response = $sendgrid->send($email);
+        // Envoyez l'e-mail
+        $response = $sendgrid->send($email);
 
-                // Affichez la réponse
-                echo "<p class='alert alert-success'>Votre message a été envoyé avec succès. Nous vous répondrons bientôt. 
-                <a href='index.php' class='btn btn-secondary'>Retour à l'accueil</a></p>";
-            } catch (Exception $e) {
-                // En cas d'erreur, affichez le message d'erreur
-                echo "<p class='alert alert-danger'>Une erreur s'est produite lors de l'envoi de votre message : {$e->getMessage()}
-                <a href='index.php' class='btn btn-secondary'>Retour à l'accueil</a></p>";
-            }
-        }
-        ?>
+        // Affichez la réponse
+        echo "<p class='alert alert-success'>Votre message a été envoyé avec succès. Nous vous répondrons bientôt. 
+        <a href='index.php' class='btn btn-secondary'>Retour à l'accueil</a></p>";
+    } catch (\SendGrid\Mail\TypeException $e) {
+        echo "Erreur lors de la construction de l'e-mail : {$e->getMessage()}";
+    } catch (Exception $e) {
+        echo "Erreur lors de l'envoi de l'e-mail : {$e->getMessage()}";
+    }
+}
+?>
 
         <form method="post" action="contact.php">
             <div class="form-group">
