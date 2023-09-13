@@ -52,13 +52,13 @@
         </div>
 
         <!-- Liste des véhicules -->
-        <div class="vehicle-list mt-4">
+        <div class="vehicle-list mt-4 row">
             <!-- Cette div sera mise à jour par JavaScript -->
         </div>
     </div>
 
     <!-- Scripts JavaScript pour les filtres et l'affichage des véhicules -->
-    <script src="../Garage_Parrot/js/scripts.js"></script>
+    <script src="/Garage_Parrot/js/scripts.js"></script>
 
     <script>
         // Fonction pour mettre à jour la liste des véhicules en fonction des filtres
@@ -91,9 +91,12 @@
                     prixMax: prixMax
                 },
                 success: function (data) {
-                    // Mettre à jour la section de la liste des véhicules avec les données reçues
-                    $('.vehicle-list').html(data);
-                },
+    // Mettre à jour la section de la liste des véhicules avec les données reçues
+    $('.vehicle-list').html(data);
+    
+    // Ajoutez des classes Bootstrap aux cartes pour les aligner sur la même ligne
+    $('.vehicle-card').addClass('col-md-4 mb-4'); // Vous pouvez ajuster la classe col-md-4 selon vos besoins
+},
                 error: function () {
                     alert('Une erreur s\'est produite lors de la récupération des véhicules filtrés.');
                 }
