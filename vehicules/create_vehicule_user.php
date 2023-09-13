@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
 
                         if (in_array($galleryImageFileType, $allowedExtensions)) {
-                            $targetGalleryDir = "uploads/galerie/"; // Répertoire de destination pour les images de la galerie
+                            $targetGalleryDir = "uploads/"; // Répertoire de destination pour les images de la galerie
                             $targetGalleryFile = $targetGalleryDir . basename($galleryImageFile);
 
                             if (move_uploaded_file($tmp_name, $targetGalleryFile)) {

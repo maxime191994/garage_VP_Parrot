@@ -152,19 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </nav>
     
-    <?php 
-     // Mettez à jour le véhicule dans la base de données
-     if ($vehiculesController->updateVehicule($vehicule)) {
-        echo "<div class='container'>";
-        echo "<h2>Véhicule mis à jour avec succès.</h2>";
-        echo '<a href="list_vehicules_user.php" class="btn btn-primary">Voir la liste des véhicules</a>';
-        echo "</div>";
-    } else {
-        echo "Erreur lors de la mise à jour du véhicule.";
-    }
-    ?>
-
-    <div class="container mt-4">
+     <div class="container mt-4">
         <h1 class="mb-4">Éditer un véhicule</h1>
         <form action="" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="vehicule_id" value="<?php echo $vehicule->getId(); ?>">

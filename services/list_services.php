@@ -56,7 +56,7 @@ if (isset($_POST['logout'])) {
                 <li class="nav-item">
                     <a class="nav-link" href="../vehicules/list_vehicules.php">Gérer les Véhicules</a>
                 </li>
-                
+              
             </ul>
         </div>
         <form class="form-inline" method="post">
