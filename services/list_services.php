@@ -32,6 +32,12 @@ $total_services = $servicesController->getTotalServices();
 // Calculer le nombre total de pages
 $total_pages = ceil($total_services / $results_per_page);
 
+// Gérer la déconnexion
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: ../auth/login.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

@@ -1,20 +1,3 @@
-<?php
-session_start();
-
-// Vérifiez si l'utilisateur est connecté en tant qu'employé
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'employee') {
-    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion si l'utilisateur n'est pas authentifié en tant qu'employé
-    exit();
-}
-
-// Gérer la déconnexion
-if (isset($_POST['logout'])) {
-    session_destroy();
-    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +71,13 @@ if (isset($_POST['logout'])) {
                 exit;
             }
         }
-           ?>
+        // Gérer la déconnexion
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
+    exit();
+  }
+        ?>
         <h1 class= "mb-4">Supprimer un service</h1>
         <p>Êtes-vous sûr de vouloir supprimer le service ?</p>
         <form action="" method="POST">
