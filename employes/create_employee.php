@@ -21,6 +21,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+<?php 
+// Gérer la déconnexion
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
+  exit();
+}
+?>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="../auth/admin_dashboard.php">Tableau de bord de l'administrateur</a>
