@@ -14,6 +14,14 @@
     <!-- Lien vers votre fichier CSS personnalisé -->
     <link rel="stylesheet" href="../css/styles.css">
 </head>
+<?php 
+// Gérer la déconnexion
+if (isset($_POST['logout'])) {
+  session_destroy();
+  header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
+  exit();
+}
+?>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="../auth/admin_dashboard.php">Tableau de bord de l'administrateur</a>
@@ -71,12 +79,6 @@
                 exit;
             }
         }
-        // Gérer la déconnexion
-if (isset($_POST['logout'])) {
-    session_destroy();
-    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
-    exit();
-  }
         ?>
         <h1 class= "mb-4">Supprimer un service</h1>
         <p>Êtes-vous sûr de vouloir supprimer le service ?</p>

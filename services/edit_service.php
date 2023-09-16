@@ -19,12 +19,14 @@ if (!$service) {
     header("Location: list_services.php");
     exit;
 }
+ 
 // Gérer la déconnexion
 if (isset($_POST['logout'])) {
   session_destroy();
   header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
   exit();
 }
+
 ?>
 
 <!DOCTYPE html>

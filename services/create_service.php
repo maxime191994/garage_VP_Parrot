@@ -17,11 +17,11 @@
 <?php 
 // Gérer la déconnexion
 if (isset($_POST['logout'])) {
-    session_destroy();
-    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
-    exit();
-  }
-  ?>
+  session_destroy();
+  header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
+  exit();
+}
+?>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="../auth/admin_dashboard.php">Tableau de bord de l'administrateur</a>
