@@ -1,4 +1,22 @@
 <?php
+session_start();
+
+// Vérifiez si l'utilisateur est connecté en tant qu'employé
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'employee') {
+    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion si l'utilisateur n'est pas authentifié en tant qu'employé
+    exit();
+}
+
+// Gérer la déconnexion
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
+    exit();
+}
+
+// Inclure le fichier de configuration PDO
+include('../config.php');
+
 require_once __DIR__ . "/../controller/VehiculesController.php";
 require_once __DIR__ . "/../model/Vehicle.php";
 

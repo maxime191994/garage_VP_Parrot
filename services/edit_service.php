@@ -1,4 +1,18 @@
 <?php
+session_start();
+
+// Vérifiez si l'utilisateur est connecté en tant qu'employé
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'employee') {
+    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion si l'utilisateur n'est pas authentifié en tant qu'employé
+    exit();
+}
+
+// Gérer la déconnexion
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
+    exit();
+}
 require_once "../controller/ServicesController.php";
 require_once "../model/Service.php";
 
@@ -19,6 +33,7 @@ if (!$service) {
     header("Location: list_services.php");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>

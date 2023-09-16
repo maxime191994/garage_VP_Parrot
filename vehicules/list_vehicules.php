@@ -18,6 +18,35 @@
 </head>
 
 <?php
+session_start();
+
+// Vérifiez si l'utilisateur est connecté en tant qu'employé
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'employee') {
+    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion si l'utilisateur n'est pas authentifié en tant qu'employé
+    exit();
+}
+
+// Gérer la déconnexion
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
+    exit();
+}
+
+// Inclure le fichier de configuration PDO
+include('../config.php');
+
+// Récupérez le nom et le prénom de l'employé connecté depuis la base de données
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT nom, prenom FROM employes WHERE id = :user_id";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(":user_id", $user_id);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$nom = $row['nom'];
+$prenom = $row['prenom'];
+
+
 require_once __DIR__ . "/../controller/VehiculesController.php";
 require_once __DIR__ . "/../model/Vehicle.php";
 
@@ -44,12 +73,7 @@ $total_vehicules = $vehiculesController->getTotalVehicules();
 
 // Calculer le nombre total de pages
 $total_pages = ceil($total_vehicules / $results_per_page);
-// Gérer la déconnexion
-if (isset($_POST['logout'])) {
-  session_destroy();
-  header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
-  exit();
-}
+
 ?>
 
 <body>

@@ -1,4 +1,18 @@
 <?php
+session_start();
+
+// Vérifiez si l'utilisateur est connecté en tant qu'employé
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'employee') {
+    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion si l'utilisateur n'est pas authentifié en tant qu'employé
+    exit();
+}
+
+// Gérer la déconnexion
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
+    exit();
+}
 require_once "../controller/HorairesOuvertureController.php";
 require_once "../model/HoraireOuverture.php";
 
@@ -26,12 +40,6 @@ $total_horaires_ouverture = $horairesOuvertureController->getTotalHorairesOuvert
 // Calculer le nombre total de pages
 $total_pages = ceil($total_horaires_ouverture / $results_per_page);
 
-// Gérer la déconnexion
-if (isset($_POST['logout'])) {
-  session_destroy();
-  header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
-  exit();
-}
 ?>
 
 <!DOCTYPE html>
