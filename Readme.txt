@@ -44,3 +44,15 @@ $db_password = "Mot de passe de la base de données";
 
           VPGarage@outlook.fr
           azerty123456
+
+
+          Identifiants des employés crées :
+
+          eric@cartman.fr
+          southpark
+
+          stan@smith.fr
+          adidas
+
+
+
