@@ -14,43 +14,49 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-12">
-                    <h6 class="text-center">Horaires d'ouverture</h6>
-                    <div class="text-center">
-                        <ul class="small text-center">
-                            <?php
-                            require_once __DIR__ . "/controller/HorairesOuvertureController.php";
-                            $horairesController = new HorairesOuvertureController();
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <h6 class="text-center">Horaires d'ouverture</h6>
+                <div class="text-center">
+                    <ul class="small text-center">
+                        <?php
+                        require_once __DIR__ . "/controller/HorairesOuvertureController.php";
+                        $horairesController = new HorairesOuvertureController();
 
-                            // Appel de la méthode pour récupérer les horaires d'ouverture
-                            $horairesOuverture = $horairesController->listHorairesOuverture();
+                        // Appel de la méthode pour récupérer les horaires d'ouverture
+                        $horairesOuverture = $horairesController->listHorairesOuverture();
 
-                            // Parcours des horaires et affichage avec le format HH:MM
-                            foreach ($horairesOuverture as $horaire) {
-                                $heureOuvertureMatin = date("H:i", strtotime($horaire->getHeureOuvertureMatin()));
-                                $heureFermetureMatin = date("H:i", strtotime($horaire->getHeureFermetureMatin()));
-                                $heureOuvertureAprem = date("H:i", strtotime($horaire->getHeureOuvertureAprem()));
-                                $heureFermetureAprem = date("H:i", strtotime($horaire->getHeureFermetureAprem()));
+                        // Parcours des horaires et affichage avec le format HH:MM
+                        foreach ($horairesOuverture as $horaire) {
+                            $jourSemaine = $horaire->getJourSemaine();
+                            $heureOuvertureMatin = date("H:i", strtotime($horaire->getHeureOuvertureMatin()));
+                            $heureFermetureMatin = date("H:i", strtotime($horaire->getHeureFermetureMatin()));
+                            $heureOuvertureAprem = date("H:i", strtotime($horaire->getHeureOuvertureAprem()));
+                            $heureFermetureAprem = date("H:i", strtotime($horaire->getHeureFermetureAprem()));
 
-                                // Affichage des horaires
-                                echo '<li>' . $horaire->getJourSemaine() . ''. $heureOuvertureMatin . ' - ' . $heureFermetureMatin . ', ' . $heureOuvertureAprem . ' - ' . $heureFermetureAprem . '</li>';
+                            // Exclure le samedi et afficher uniquement les horaires du matin
+                            if ($jourSemaine !== 'Samedi') {
+                                echo '<li>' . $jourSemaine . ': ' . $heureOuvertureMatin . ' - ' . $heureFermetureMatin . ', ' . $heureOuvertureAprem . ' - ' . $heureFermetureAprem . '</li>';
+                            } else {
+                                echo '<li>' . $jourSemaine . ': ' . $heureOuvertureMatin . ' - ' . $heureFermetureMatin . '</li>';
                             }
-                            ?>
-                            <li>Dimanche : Fermé</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <!-- Vos informations de contact et de droits d'auteur restent inchangées ici -->
-                    <p class="small text-center">123 Rue de la République<br>31000 Toulouse</p>
-                    <p class="small text-center"><a href="mailto:VPGarage@outlook.fr">VPGarage@outlook.fr</a><br><a href="tel:+1234567890">+123 456 7890</a></p>
-                    <p class="small text-center">&copy; 2023 Garage V. Parrot</p>
+                        }
+                        ?>
+                        <li>Dimanche : Fermé</li>
+                    </ul>
                 </div>
             </div>
+            <div class="col-md-6 col-12">
+                <!-- Vos informations de contact et de droits d'auteur restent inchangées ici -->
+                <p class="small text-center">123 Rue de la République<br>31000 Toulouse</p>
+                <p class="small text-center"><a href="mailto:VPGarage@outlook.fr">VPGarage@outlook.fr</a><br><a href="tel:+1234567890">+123 456 7890</a></p>
+                <p class="small text-center">&copy; 2023 Garage V. Parrot</p>
+            </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
 
 
 
