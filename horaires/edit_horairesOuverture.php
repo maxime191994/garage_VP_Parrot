@@ -1,6 +1,5 @@
 <?php
 require_once "../controller/HorairesOuvertureController.php";
-require_once "../model/HoraireOuverture.php";
 
 $horairesOuvertureController = new HorairesOuvertureController();
 
@@ -25,7 +24,7 @@ if (isset($_POST['logout'])) {
     session_destroy();
     header('Location: ../auth/login.php'); // Rediriger vers la page de connexion
     exit();
-  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -84,12 +83,21 @@ if (isset($_POST['logout'])) {
                 <input type="text" class="form-control" id="jour_semaine" name="jour_semaine" value="<?php echo $horaireOuverture->getJourSemaine(); ?>" readonly>
             </div>
             <div class="mb-3">
-            <label for="heure_ouverture" class="form-label">Heure d'ouverture</label>
-                <input type="text" class="form-control flatpickr-input" id="heure_ouverture" name="heure_ouverture" value="<?php echo $horaireOuverture->getHeureOuverture(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
+            <label for="heure_ouverture" class="form-label">Heure d'ouverture matin</label>
+                <input type="text" class="form-control flatpickr-input" id="heure_ouverture_matin" name="heure_ouverture_matin" value="<?php echo $horaireOuverture->getHeureOuvertureMatin(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
             </div>
             <div class="mb-3">
-            <label for="heure_fermeture" class="form-label">Heure de fermeture</label>
-                <input type="text" class="form-control flatpickr-input" id="heure_fermeture" name="heure_fermeture" value="<?php echo $horaireOuverture->getHeureFermeture(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
+            <label for="heure_fermeture" class="form-label">Heure de fermeture matin</label>
+                <input type="text" class="form-control flatpickr-input" id="heure_fermeture_matin" name="heure_fermeture_matin" value="<?php echo $horaireOuverture->getHeureFermetureMatin(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
+            </div>
+            <div class="mb-3">
+            <label for="heure_ouverture" class="form-label">Heure d'ouverture après-midi</label>
+                <input type="text" class="form-control flatpickr-input" id="heure_ouverture_aprem" name="heure_ouverture_aprem" value="<?php echo $horaireOuverture->getHeureOuvertureAprem(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
+            </div>
+
+            <div class="mb-3">
+            <label for="heure_fermeture" class="form-label">Heure de fermeture après-midi</label>
+                <input type="text" class="form-control flatpickr-input" id="heure_fermeture_aprem" name="heure_fermeture_aprem" value="<?php echo $horaireOuverture->getHeureFermetureAprem(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
             </div>
 
             <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -103,11 +111,8 @@ if (isset($_POST['logout'])) {
                     <div class="text-center">
                         <ul class="small text-center">
                             <?php
-                            require_once __DIR__ . "/../controller/HorairesOuvertureController.php"; // Remplacez par le chemin réel
-                            $horairesController = new HorairesOuvertureController();
-
                             // Appel de la méthode pour récupérer les horaires d'ouverture
-                            $horairesOuverture = $horairesController->listHorairesOuverture();
+                            $horairesOuverture = $horairesOuvertureController->listHorairesOuverture();
 
                             // Parcours des horaires et affichage avec le format HH:MM
                             foreach ($horairesOuverture as $horaire) {

@@ -86,8 +86,10 @@ if (isset($_POST['logout'])) {
                 <tr>
                     
                     <th>Jour de la semaine</th>
-                    <th>Heure d'ouverture</th>
-                    <th>Heure de fermeture</th>
+                    <th>Heure d'ouverture matin</th>
+                    <th>Heure de fermeture matin</th>
+                    <th>Heure d'ouverture après-midi</th>
+                    <th>Heure de fermeture après-midi</th>
                     <!-- Ajoutez d'autres en-têtes ici si nécessaire -->
                 </tr>
             </thead>
@@ -96,8 +98,10 @@ if (isset($_POST['logout'])) {
                     <tr>
                         
                         <td><?php echo $horaireOuverture->getJourSemaine(); ?></td>
-                        <td><?php echo $heureOuverture = date("H:i", strtotime($horaireOuverture->getHeureOuverture())); ?></td>
-                        <td><?php echo $heureOuverture = date("H:i", strtotime($horaireOuverture->getHeureFermeture())); ?></td>
+                        <td><?php echo $heureOuverture = date("H:i", strtotime($horaireOuverture->getHeureOuvertureMatin())); ?></td>
+                        <td><?php echo $heureOuverture = date("H:i", strtotime($horaireOuverture->getHeureFermetureMatin())); ?></td>
+                        <td><?php echo $heureOuverture = date("H:i", strtotime($horaireOuverture->getHeureOuvertureAprem())); ?></td>
+                        <td><?php echo $heureOuverture = date("H:i", strtotime($horaireOuverture->getHeureFermetureAprem())); ?></td>
                         <!-- Ajoutez d'autres colonnes ici si nécessaire -->
                         <td>
                             <a href="edit_horairesOuverture.php?id=<?php echo $horaireOuverture->getId(); ?>" class="btn btn-primary btn-sm">Modifier</a>
@@ -140,9 +144,11 @@ if (isset($_POST['logout'])) {
 
                             // Parcours des horaires et affichage avec le format HH:MM
                             foreach ($horairesOuverture as $horaire) {
-                                $heureOuverture = date("H:i", strtotime($horaire->getHeureOuverture()));
-                                $heureFermeture = date("H:i", strtotime($horaire->getHeureFermeture()));
-                                echo '<li>' . $horaire->getJourSemaine() . ': ' . $heureOuverture . ' - ' . $heureFermeture . '</li>';
+                                $heureOuvertureMatin = date("H:i", strtotime($horaire->getHeureOuvertureMatin()));
+                                $heureFermetureMatin = date("H:i", strtotime($horaire->getHeureFermetureMatin()));
+                                $heureOuvertureAprem = date("H:i", strtotime($horaire->getHeureOuvertureAprem()));
+                                $heureFermetureAprem = date("H:i", strtotime($horaire->getHeureFermetureAprem()));
+                                echo '<li>' . $horaire->getJourSemaine() . ': Matin ' . $heureOuvertureMatin . ' - ' . $heureFermetureMatin . ', Après-midi ' . $heureOuvertureAprem . ' - ' . $heureFermetureAprem . '</li>';
                             }
                             ?>
                             <li>Dimanche : Fermé</li>

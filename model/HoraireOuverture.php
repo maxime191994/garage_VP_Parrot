@@ -3,14 +3,18 @@
 class HoraireOuverture {
     private $id;
     private $jourSemaine;
-    private $heureOuverture;
-    private $heureFermeture;
+    private $heureOuvertureMatin;
+    private $heureFermetureMatin;
+    private $heureOuvertureAprem;
+    private $heureFermetureAprem;
 
-    public function __construct($id, $jourSemaine, $heureOuverture, $heureFermeture) {
+    public function __construct($id, $jourSemaine, $heureOuvertureMatin, $heureFermetureMatin, $heureOuvertureAprem, $heureFermetureAprem) {
         $this->id = $id;
         $this->jourSemaine = $jourSemaine;
-        $this->heureOuverture = $heureOuverture;
-        $this->heureFermeture = $heureFermeture;
+        $this->heureOuvertureMatin = $heureOuvertureMatin;
+        $this->heureFermetureMatin = $heureFermetureMatin;
+        $this->heureOuvertureAprem = $heureOuvertureAprem;
+        $this->heureFermetureAprem = $heureFermetureAprem;
     }
 
     public function getId() {
@@ -29,22 +33,39 @@ class HoraireOuverture {
         $this->jourSemaine = $jourSemaine;
     }
 
-    public function getHeureOuverture() {
-        return $this->heureOuverture;
+    public function getHeureOuvertureMatin() {
+        return $this->heureOuvertureMatin;
     }
 
-    public function setHeureOuverture($heureOuverture) {
-        $this->heureOuverture = $heureOuverture;
+    public function setHeureOuvertureMatin($heureOuvertureMatin) {
+        $this->heureOuvertureMatin = $heureOuvertureMatin;
     }
 
-    public function getHeureFermeture() {
-        return $this->heureFermeture;
+    public function getHeureFermetureMatin() {
+        return $this->heureFermetureMatin;
     }
 
-    public function setHeureFermeture($heureFermeture) {
-        $this->heureFermeture = $heureFermeture;
+    public function setHeureFermetureMatin($heureFermetureMatin) {
+        $this->heureFermetureMatin = $heureFermetureMatin;
+    }
+
+    public function getHeureOuvertureAprem() {
+        return $this->heureOuvertureAprem;
+    }
+
+    public function setHeureOuvertureAprem($heureOuvertureAprem) {
+        $this->heureOuvertureAprem = $heureOuvertureAprem;
+    }
+
+    public function getHeureFermetureAprem() {
+        return $this->heureFermetureAprem;
+    }
+
+    public function setHeureFermetureAprem($heureFermetureAprem) {
+        $this->heureFermetureAprem = $heureFermetureAprem;
     }
 
     // Autres méthodes de gestion des horaires d'ouverture
     // ...
 }
+
