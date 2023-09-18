@@ -43,6 +43,8 @@ if (isset($_POST['logout'])) {
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
     <!-- Lien vers la bibliothèque Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+
     <!-- Lien vers la bibliothèque Flatpickr JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="../css/styles.css"> <!-- Référence au fichier styles.css -->
@@ -84,55 +86,24 @@ if (isset($_POST['logout'])) {
             </div>
             <div class="mb-3">
     <label for="heure_ouverture_matin" class="form-label">Heure d'ouverture matin</label>
-    <div class="input-group">
-        <span class="input-group-btn">
-            <button type="button" class="btn btn-secondary" id="heure_ouverture_matin_dec">-</button>
-        </span>
-        <input type="text" class="form-control flatpickr-input" id="heure_ouverture_matin" name="heure_ouverture_matin" value="<?php echo $horaireOuverture->getHeureOuvertureMatin(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
-        <span class="input-group-btn">
-            <button type="button" class="btn btn-secondary" id="heure_ouverture_matin_inc">+</button>
-        </span>
-    </div>
+    <input type="text" class="form-control flatpickr-input" id="heure_ouverture_matin" name="heure_ouverture_matin" value="<?php echo $horaireOuverture->getHeureOuvertureMatin(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
 </div>
 
 <div class="mb-3">
     <label for="heure_fermeture_matin" class="form-label">Heure de fermeture matin</label>
-    <div class="input-group">
-        <span class="input-group-btn">
-            <button type="button" class="btn btn-secondary" id="heure_fermeture_matin_dec">-</button>
-        </span>
-        <input type="text" class="form-control flatpickr-input" id="heure_fermeture_matin" name="heure_fermeture_matin" value="<?php echo $horaireOuverture->getHeureFermetureMatin(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
-        <span class="input-group-btn">
-            <button type="button" class="btn btn-secondary" id="heure_fermeture_matin_inc">+</button>
-        </span>
-    </div>
+    <input type="text" class="form-control flatpickr-input" id="heure_fermeture_matin" name="heure_fermeture_matin" value="<?php echo $horaireOuverture->getHeureFermetureMatin(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
 </div>
 
 <div class="mb-3">
     <label for="heure_ouverture_aprem" class="form-label">Heure d'ouverture après-midi</label>
-    <div class="input-group">
-        <span class="input-group-btn">
-            <button type="button" class="btn btn-secondary" id="heure_ouverture_aprem_dec">-</button>
-        </span>
-        <input type="text" class="form-control flatpickr-input" id="heure_ouverture_aprem" name="heure_ouverture_aprem" value="<?php echo $horaireOuverture->getHeureOuvertureAprem(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
-        <span class="input-group-btn">
-            <button type="button" class="btn btn-secondary" id="heure_ouverture_aprem_inc">+</button>
-        </span>
-    </div>
+    <input type="text" class="form-control flatpickr-input" id="heure_ouverture_aprem" name="heure_ouverture_aprem" value="<?php echo $horaireOuverture->getHeureOuvertureAprem(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
 </div>
 
 <div class="mb-3">
     <label for="heure_fermeture_aprem" class="form-label">Heure de fermeture après-midi</label>
-    <div class="input-group">
-        <span class="input-group-btn">
-            <button type="button" class="btn btn-secondary" id="heure_fermeture_aprem_dec">-</button>
-        </span>
-        <input type="text" class="form-control flatpickr-input" id="heure_fermeture_aprem" name="heure_fermeture_aprem" value="<?php echo $horaireOuverture->getHeureFermetureAprem(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
-        <span class="input-group-btn">
-            <button type="button" class="btn btn-secondary" id="heure_fermeture_aprem_inc">+</button>
-        </span>
-    </div>
+    <input type="text" class="form-control flatpickr-input" id="heure_fermeture_aprem" name="heure_fermeture_aprem" value="<?php echo $horaireOuverture->getHeureFermetureAprem(); ?>" required data-enable-time="true" data-no-calendar="true" data-date-format="H:i">
 </div>
+
 
             <button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>
@@ -172,55 +143,20 @@ if (isset($_POST['logout'])) {
     crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script>
-    // Fonction pour incrémenter ou décrémenter l'heure dans un champ d'entrée
-    function incrementDecrementHour(inputId, increment) {
-        var inputElement = document.getElementById(inputId);
-        var date = flatpickr.parseDate(inputElement.value, "H:i");
-        if (date) {
-            date.setHours(date.getHours() + increment);
-            inputElement.value = flatpickr.formatDate(date, "H:i");
-        }
-    }
-
-    // Associez les fonctions aux boutons correspondants
-    document.getElementById("heure_ouverture_matin_inc").addEventListener("click", function() {
-        incrementDecrementHour("heure_ouverture_matin", 1);
-    });
-
-    document.getElementById("heure_ouverture_matin_dec").addEventListener("click", function() {
-        incrementDecrementHour("heure_ouverture_matin", -1);
-    });
-
-    document.getElementById("heure_fermeture_matin_inc").addEventListener("click", function() {
-        incrementDecrementHour("heure_fermeture_matin", 1);
-    });
-
-    document.getElementById("heure_fermeture_matin_dec").addEventListener("click", function() {
-        incrementDecrementHour("heure_fermeture_matin", -1);
-    });
-
-    document.getElementById("heure_ouverture_aprem_inc").addEventListener("click", function() {
-        incrementDecrementHour("heure_ouverture_aprem", 1);
-    });
-
-    document.getElementById("heure_ouverture_aprem_dec").addEventListener("click", function() {
-        incrementDecrementHour("heure_ouverture_aprem", -1);
-    });
-
-    document.getElementById("heure_fermeture_aprem_inc").addEventListener("click", function() {
-        incrementDecrementHour("heure_fermeture_aprem", 1);
-    });
-
-    document.getElementById("heure_fermeture_aprem_dec").addEventListener("click", function() {
-        incrementDecrementHour("heure_fermeture_aprem", -1);
-    });
-
-    // Initialize Flatpickr
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script> <!-- Ajoutez la localisation pour le français -->
+<script>
     flatpickr(".flatpickr-input", {
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i",
+        theme: "dark", // Choisissez le thème souhaité (par exemple, "light", "dark", etc.)
+        locale: "fr", // Utilisez la localisation française
+        minuteIncrement: 15, // Incrémentation de 15 minutes
+        enableSeconds: false, // Désactivez les secondes si nécessaire
+        allowInput: true, // Permettez la saisie directe
+        clickOpens: true, // Afficher le calendrier lors du clic sur l'icône
+        time_24hr: true // Utilisez le format 24 heures
     });
 </script>
 
