@@ -27,13 +27,15 @@
                             // Appel de la méthode pour récupérer les horaires d'ouverture
                             $horairesOuverture = $horairesController->listHorairesOuverture();
 
-                            // Parcours des horaires et affichage des horaires du matin pour samedi
+                            // Parcours des horaires et affichage avec le format HH:MM
                             foreach ($horairesOuverture as $horaire) {
-                                if ($horaire->getJourSemaine() === "Samedi") {
-                                    $heureOuvertureMatin = date("H:i", strtotime($horaire->getHeureOuvertureMatin()));
-                                    $heureFermetureMatin = date("H:i", strtotime($horaire->getHeureFermetureMatin()));
-                                    echo '<li>' . $horaire->getJourSemaine() . ': Matin ' . $heureOuvertureMatin . ' - ' . $heureFermetureMatin . '</li>';
-                                }
+                                $heureOuvertureMatin = date("H:i", strtotime($horaire->getHeureOuvertureMatin()));
+                                $heureFermetureMatin = date("H:i", strtotime($horaire->getHeureFermetureMatin()));
+                                $heureOuvertureAprem = date("H:i", strtotime($horaire->getHeureOuvertureAprem()));
+                                $heureFermetureAprem = date("H:i", strtotime($horaire->getHeureFermetureAprem()));
+
+                                // Affichage des horaires
+                                echo '<li>' . $horaire->getJourSemaine() . ''. $heureOuvertureMatin . ' - ' . $heureFermetureMatin . ', ' . $heureOuvertureAprem . ' - ' . $heureFermetureAprem . '</li>';
                             }
                             ?>
                             <li>Dimanche : Fermé</li>
