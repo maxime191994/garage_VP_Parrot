@@ -11,6 +11,11 @@ $motDePasseHache = password_hash($motDePasse, PASSWORD_DEFAULT);
 echo "Mot de passe haché : " . $motDePasseHache;
 ?>
 
+requete sql :
+
+INSERT INTO administrateurs (nom, prenom, email, mot_de_passe)
+VALUES ('Parrot', 'Vincent', 'VPGarage@outlook.fr', '$2y$10$8pxMTSUAMXy9AdilfnCBm.XS5mjIwPKnTdE3ICY7PIrwlbd01/6AC');
+
 UTILISATION DE VS CODE ET POSTGRESQL
 
 1- Dans un premier temps, connectez-vous à PostgreSQL (pgAdmin4) et créez une base de données 
