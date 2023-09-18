@@ -31,3 +31,18 @@ $migrations = [
   
   
   ];
+  // Exécution des migrations
+foreach ($migrations as $migration) {
+    try {
+        $db->exec($migration);
+        echo "Migration réussie : $migration\n";
+    } catch (PDOException $e) {
+        echo "Erreur lors de la migration : " . $e->getMessage() . "\n";
+        exit(1);
+    }
+}
+
+echo "Toutes les migrations ont été exécutées avec succès.\n";
+
+// Fermeture de la connexion à la base de données
+$db = null;
