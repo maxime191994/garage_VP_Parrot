@@ -116,7 +116,7 @@ if (isset($_POST['logout'])) {
                 <div class="text-center">
                     <ul class="small text-center">
                         <?php
-                        require_once __DIR__ . "/controller/HorairesOuvertureController.php";
+                        require_once __DIR__ . "../controller/HorairesOuvertureController.php";
                         $horairesController = new HorairesOuvertureController();
 
                         // Appel de la méthode pour récupérer les horaires d'ouverture
