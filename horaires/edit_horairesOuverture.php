@@ -108,36 +108,49 @@ if (isset($_POST['logout'])) {
             <button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>
     </div>
-    <footer class="mt-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-12">
-                    <h6 class="text-center">Horaires d'ouverture</h6>
-                    <div class="text-center">
-                        <ul class="small text-center">
-                            <?php
-                            // Appel de la méthode pour récupérer les horaires d'ouverture
-                            $horairesOuverture = $horairesOuvertureController->listHorairesOuverture();
+    <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-12 text-center">
+                <h6 class="text-center">Horaires d'ouverture</h6>
+                <div class="text-center">
+                    <ul class="small text-center">
+                        <?php
+                        require_once __DIR__ . "/controller/HorairesOuvertureController.php";
+                        $horairesController = new HorairesOuvertureController();
 
-                            // Parcours des horaires et affichage avec le format HH:MM
-                            foreach ($horairesOuverture as $horaire) {
-                                $heureOuverture = date("H:i", strtotime($horaire->getHeureOuverture()));
-                                $heureFermeture = date("H:i", strtotime($horaire->getHeureFermeture()));
-                                echo '<li>' . $horaire->getJourSemaine() . ': ' . $heureOuverture . ' - ' . $heureFermeture . '</li>';
+                        // Appel de la méthode pour récupérer les horaires d'ouverture
+                        $horairesOuverture = $horairesController->listHorairesOuverture();
+
+                        // Parcours des horaires et affichage avec le format HH:MM
+                        foreach ($horairesOuverture as $horaire) {
+                            $jourSemaine = $horaire->getJourSemaine();
+                            $heureOuvertureMatin = date("H:i", strtotime($horaire->getHeureOuvertureMatin()));
+                            $heureFermetureMatin = date("H:i", strtotime($horaire->getHeureFermetureMatin()));
+                            $heureOuvertureAprem = date("H:i", strtotime($horaire->getHeureOuvertureAprem()));
+                            $heureFermetureAprem = date("H:i", strtotime($horaire->getHeureFermetureAprem()));
+
+                            // Exclure le samedi et afficher uniquement les horaires du matin
+                            if ($jourSemaine !== 'Samedi') {
+                                echo '<li>' . $jourSemaine . ': ' . $heureOuvertureMatin . ' - ' . $heureFermetureMatin . ', ' . $heureOuvertureAprem . ' - ' . $heureFermetureAprem . '</li>';
+                            } else {
+                                echo '<li>' . $jourSemaine . ': ' . $heureOuvertureMatin . ' - ' . $heureFermetureMatin . '</li>';
                             }
-                            ?>
-                            <li>Dimanche : Fermé</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <p class="small text-center">123 Rue de la République<br>31000 Toulouse</p>
-                    <p class="small text-center"><a href="mailto:VPGarage@outlook.fr">VPGarage@outlook.fr</a><br><a href="tel:+1234567890">+123 456 7890</a></p>
-                    <p class="small text-center">&copy; 2023 Garage V. Parrot</p>
+                        }
+                        ?>
+                        <li>Dimanche : Fermé</li>
+                    </ul>
                 </div>
             </div>
+            <div class="col-md-6 col-12">
+                
+                <p class="small text-center">123 Rue de la République<br>31000 Toulouse</p>
+                <p class="small text-center"><a href="mailto:VPGarage@outlook.fr">VPGarage@outlook.fr</a><br><a href="tel:+1234567890">+123 456 7890</a></p>
+                <p class="small text-center">&copy; 2023 Garage V. Parrot</p>
+            </div>
         </div>
-    </footer>
+    </div>
+</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" 
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" 
     crossorigin="anonymous"></script>
