@@ -55,7 +55,7 @@ if (isset($_POST['logout'])) {
 <body>
     <!-- Barre de navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="../auth/admin_dashboard.php">Tableau de bord de l'administrateur</a>
+        <a class="navbar-brand" href="/../auth/admin_dashboard.php">Tableau de bord de l'administrateur</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
