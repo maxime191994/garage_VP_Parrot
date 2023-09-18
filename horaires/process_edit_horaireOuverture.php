@@ -21,15 +21,19 @@ if (!$horaire) {
 }
 
 // Vérification des données du formulaire
-$heure_ouverture = isset($_POST['heure_ouverture']) ? $_POST['heure_ouverture'] : $horaire->getHeureOuverture();
-$heure_fermeture = isset($_POST['heure_fermeture']) ? $_POST['heure_fermeture'] : $horaire->getHeureFermeture();
+$heure_ouverture_matin = isset($_POST['heure_ouverture_matin']) ? $_POST['heure_ouverture_matin'] : $horaire->getHeureOuvertureMatin();
+$heure_fermeture_matin = isset($_POST['heure_fermeture_matin']) ? $_POST['heure_fermeture_matin'] : $horaire->getHeureFermetureMatin();
+$heure_ouverture_aprem = isset($_POST['heure_ouverture_aprem']) ? $_POST['heure_ouverture_aprem'] : $horaire->getHeureOuvertureAprem();
+$heure_fermeture_aprem = isset($_POST['heure_fermeture_aprem']) ? $_POST['heure_fermeture_aprem'] : $horaire->getHeureFermetureAprem();
 
 // Création d'une nouvelle instance de HoraireOuverture avec les données mises à jour
 $updatedHoraireOuverture = new HoraireOuverture(
     $horaireId,
     $horaire->getJourSemaine(),
-    $heure_ouverture,
-    $heure_fermeture
+    $heure_ouverture_matin,
+    $heure_fermeture_matin,
+    $heure_ouverture_aprem,
+    $heure_fermeture_aprem
 );
 
 // Mettre à jour l'horaire d'ouverture dans la base de données
