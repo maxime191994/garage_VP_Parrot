@@ -128,7 +128,7 @@ if (isset($_POST['logout'])) {
                                 $heureFermetureMatin = date("H:i", strtotime($horaire->getHeureFermetureMatin()));
                                 $heureOuvertureAprem = date("H:i", strtotime($horaire->getHeureOuvertureAprem()));
                                 $heureFermetureAprem = date("H:i", strtotime($horaire->getHeureFermetureAprem()));
-                                echo '<li>' . $horaire->getJourSemaine() . ': Matin ' . $heureOuvertureMatin . ' - ' . $heureFermetureMatin . ', Après-midi ' . $heureOuvertureAprem . ' - ' . $heureFermetureAprem . '</li>';
+                                echo '<li>' . $horaire->getJourSemaine() . ': ' . $heureOuvertureMatin . ' - ' . $heureFermetureMatin . ', ' . $heureOuvertureAprem . ' - ' . $heureFermetureAprem . '</li>';
                             }
                             ?>
                             <li>Dimanche : Fermé</li>

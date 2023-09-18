@@ -104,9 +104,11 @@ if (isset($_POST['logout'])) {
 
                             // Parcours des horaires et affichage avec le format HH:MM
                             foreach ($horairesOuverture as $horaire) {
-                                $heureOuverture = date("H:i", strtotime($horaire->getHeureOuverture()));
-                                $heureFermeture = date("H:i", strtotime($horaire->getHeureFermeture()));
-                                echo '<li>' . $horaire->getJourSemaine() . ': ' . $heureOuverture . ' - ' . $heureFermeture . '</li>';
+                                $heureOuvertureMatin = date("H:i", strtotime($horaire->getHeureOuvertureMatin()));
+                                $heureFermetureMatin = date("H:i", strtotime($horaire->getHeureFermetureMatin()));
+                                $heureOuvertureAprem = date("H:i", strtotime($horaire->getHeureOuvertureAprem()));
+                                $heureFermetureAprem = date("H:i", strtotime($horaire->getHeureFermetureAprem()));
+                                echo '<li>' . $horaire->getJourSemaine() . ': ' . $heureOuvertureMatin . ' - ' . $heureFermetureMatin . ', ' . $heureOuvertureAprem . ' - ' . $heureFermetureAprem . '</li>';
                             }
                             ?>
                             <li>Dimanche : Fermé</li>
