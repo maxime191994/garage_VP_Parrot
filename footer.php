@@ -16,7 +16,7 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-12">
+            <div class="col-md-6 col-12 text-center">
                 <h6 class="text-center">Horaires d'ouverture</h6>
                 <div class="text-center">
                     <ul class="small text-center">
