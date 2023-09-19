@@ -2,14 +2,14 @@ Installation pour une execution en local
 
 -- Création d'un administrateur avec un mot de passe hasher
 
-<?php
+"<?php
 $motDePasse = "monmotdepasse"; // Mot de passe en clair
 
 // Utilisez password_hash pour générer le hachage du mot de passe
 $motDePasseHache = password_hash($motDePasse, PASSWORD_DEFAULT);
 
 echo "Mot de passe haché : " . $motDePasseHache;
-?>
+?>"
 
 requete sql :
 
