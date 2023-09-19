@@ -1,20 +1,22 @@
 Installation pour une execution en local 
 
 -- Création d'un administrateur avec un mot de passe hasher
-
-"<?php
+Suivez le code à la fin du readme. 
+<?php
 $motDePasse = "monmotdepasse"; // Mot de passe en clair
 
 // Utilisez password_hash pour générer le hachage du mot de passe
 $motDePasseHache = password_hash($motDePasse, PASSWORD_DEFAULT);
 
 echo "Mot de passe haché : " . $motDePasseHache;
-?>"
+?>
 
 requete sql :
 
 INSERT INTO administrateurs (nom, prenom, email, mot_de_passe)
 VALUES ('Parrot', 'Vincent', 'VPGarage@outlook.fr', '$2y$10$8pxMTSUAMXy9AdilfnCBm.XS5mjIwPKnTdE3ICY7PIrwlbd01/6AC');
+
+inserer les valeurs que vous souhaitez pour le nom, prenom, email, et inserer le resultat du mot de passe hasher que vous avez eu grace au code présent à la fin du fichier
 
 UTILISATION DE VS CODE ET POSTGRESQL
 
@@ -58,6 +60,16 @@ $db_password = "Mot de passe de la base de données";
 
           stan@smith.fr
           adidas
+
+          pour hasher un mot de passe : 
+          <?php 
+          $motDePasse = "monmotdepasse"; // Mot de passe en clair
+          
+          // Utilisez password_hash pour générer le hachage du mot de passe
+          $motDePasseHache = password_hash($motDePasse, PASSWORD_DEFAULT);
+
+          echo "Mot de passe haché : " . $motDePasseHache;
+          ?>
 
           https://trello.com/invite/b/9b7Fusgy/ATTIb395a5fa6b144fb1d583521608e54520C6D34307/vpgarage
 
