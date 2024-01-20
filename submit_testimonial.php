@@ -34,6 +34,7 @@ $testimonials = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="form-group">
                     <label for="note">Note :</label>
                     <select class="form-control" id="note" name="note" required>
+                    <option value="" disabled selected>Note</option>
                         <option value="1">1 (Très médiocre)</option>
                         <option value="2">2 (Médiocre)</option>
                         <option value="3">3 (Moyen)</option>

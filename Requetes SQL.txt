@@ -79,29 +79,26 @@ ALTER COLUMN prix TYPE INT
 USING prix::integer;
 
 
+-- Création d'un admin avec un mot de passe hasher
+
+<?php
+$motDePasse = "monmotdepasse"; // Mot de passe en clair
+
+// Utilisez password_hash pour générer le hachage du mot de passe
+$motDePasseHache = password_hash($motDePasse, PASSWORD_DEFAULT);
+
+echo "Mot de passe haché : " . $motDePasseHache;
+?>
+
 INSERT INTO administrateurs (nom, prenom, email, mot_de_passe)
-VALUES ('Parrot', 'Vincent', 'VPGarage@outlook.fr', '$2y$10$8pxMTSUAMXy9AdilfnCBm.XS5mjIwPKnTdE3ICY7PIrwlbd01/6AC');
+VALUES ('Parrot', 'Vincent', 'VPGarage@outlook.fr', 'la valeur du echo $motDePasseHache');
 
-ALTER TABLE horaires_ouverture
-  ADD COLUMN heure_ouverture_matin TIME,
-  ADD COLUMN heure_fermeture_matin TIME,
-  ADD COLUMN heure_ouverture_aprem TIME,
-  ADD COLUMN heure_fermeture_aprem TIME;
 
-  ALTER TABLE horaires_ouverture
-  DROP COLUMN heure_ouverture,
-  DROP COLUMN heure_fermeture;
+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
 
-UPDATE horaires_ouverture
-  SET heure_ouverture_matin = '08:45:00',
-      heure_fermeture_matin = '12:00:00',
-      heure_ouverture_aprem = '14:00:00',
-      heure_fermeture_aprem = '18:00:00'
-  WHERE jour_semaine IN ('Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi');
-
-  UPDATE horaires_ouverture
-  SET heure_ouverture_matin = '08:45:00',
-      heure_fermeture_matin = '12:00:00',
-      heure_ouverture_aprem = '00:00:00', -- Fermé l'après-midi
-      heure_fermeture_aprem = '00:00:00'  -- Fermé l'après-midi
-  WHERE jour_semaine = 'Samedi';
+Server	smtp.sendgrid.net
+Ports	
+25, 587	(for unencrypted/TLS connections)
+465	(for SSL connections)
+Username	apikey
+Password	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
